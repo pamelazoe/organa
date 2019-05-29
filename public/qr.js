@@ -5,6 +5,7 @@ let loadingMessage = document.getElementById("loadingMessage");
 let outputContainer = document.getElementById("output");
 let outputMessage = document.getElementById("outputMessage");
 let outputData = document.getElementById("outputData");
+let dataName= new Array();
 
 function drawLine(begin, end, color) {
   canvas.beginPath();
@@ -16,12 +17,14 @@ function drawLine(begin, end, color) {
 }
 
 // Use facingMode: environment to attemt to get the front camera on phones
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+.then(function(stream) {
   video.srcObject = stream;
   video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
   video.play();
+
   requestAnimationFrame(tick);
-});
+})
 
 function tick() {
 
@@ -46,13 +49,20 @@ function tick() {
       outputMessage.hidden = true;
       outputData.parentElement.hidden = false;
       outputData.innerText = code.data;
-      console.log(code.data);
+
+      if (!dataName.includes(code.data)) {
+            dataName.push(code.data);
+            console.log(dataName);
+          }
     } else {
 
       outputMessage.hidden = false;
-      outputData.parentElement.hidden = true;
+      //outputData.parentElement.hidden = true;
     }
 
   }
+  //video.stop(code.data);
+
+//console.log(dataName);
   requestAnimationFrame(tick);
 }
