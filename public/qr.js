@@ -24,6 +24,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
 });
 
 function tick() {
+
   loadingMessage.innerText = "⌛ Loading video..."
   if (video.readyState === video.HAVE_ENOUGH_DATA) {
     loadingMessage.hidden = true;
@@ -45,10 +46,13 @@ function tick() {
       outputMessage.hidden = true;
       outputData.parentElement.hidden = false;
       outputData.innerText = code.data;
+      console.log(code.data);
     } else {
+
       outputMessage.hidden = false;
       outputData.parentElement.hidden = true;
     }
+
   }
   requestAnimationFrame(tick);
 }
