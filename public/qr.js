@@ -6,7 +6,9 @@ let loadingMessage = document.getElementById("loadingMessage");
 let outputContainer = document.getElementById("output");
 let outputMessage = document.getElementById("outputMessage");
 let outputData = document.getElementById("outputData");
-let dataName= new Array();
+let studentsList = [];
+let database = null;
+
 
 function drawLine(begin, end, color) {
   canvas.beginPath();
@@ -26,6 +28,71 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
 
   requestAnimationFrame(tick);
 })
+
+document.body.onload = function loadAssistenceList(){
+  const students = "https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users";
+  fetch(students).then( response=>{
+    return response.json();
+  }).then( data =>{
+    studentsList = data.filter(member => member.role === "student").map(student => student.name);
+    console.log("DEBUG: array de asistencia", studentsList);
+  }).catch(err => {
+    console.log(err);
+  });
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDM4BaGXqRrxEstoAWDB9J6_eUpl2vyHpc",
+    authDomain: "organa-fe27f.firebaseapp.com",
+    databaseURL: "https://organa-fe27f.firebaseio.com",
+    projectId: "organa-fe27f",
+    storageBucket: "organa-fe27f.appspot.com",
+    messagingSenderId: "379976432430",
+    appId: "1:379976432430:web:b799351a0821af9a"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  database = firebase.firestore();
+
+}
+
+function getTodayDateStr() {
+  const date = new Date();
+  return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+}
+
+function updateDbAsistence(studentName, db) {
+  const todayDateStr = getTodayDateStr();
+
+  let asistenceRef = db.collection("asistencia_gdl");
+  let todayAsistenceRef = asistenceRef.doc(todayDateStr);
+
+  todayAsistenceRef.get().then(doc=>{
+    if (doc.exists) {
+      let studentsList = doc.data().students;
+      console.log("Document data:", studentsList);
+
+      const studentFound = studentsList.find(student=>{
+        return student.name === studentName;
+      });
+
+      if(studentFound === undefined) { /* student is not found in today's list */
+        studentsList.push({ name: studentName, date: Date.now() });
+        // adding student to asistence list
+        todayAsistenceRef.set({
+          students: studentsList
+        }).catch(error => {
+          console.error("Error writing document: ", error);
+        });
+    }
+    } else {
+      todayAsistenceRef.set({
+        students: [{name:studentName, date: Date.now()}]
+      });
+    }
+  }).catch(error=> {
+    console.log("Error getting document:", error);
+  });
+}
 
 function tick() {
 
@@ -75,12 +142,16 @@ function tick() {
       }
       })
 
-      if (!dataName.includes(code.data)) {
-            dataName.push(code.data);
-            console.log(dataName);
-          }
-    } else {
+      if (studentsList.includes(code.data)) {
+          console.log(code.data + "es alumna");
+          const studentName = code.data;
+          updateDbAsistence(studentName, database);     
+      }
+      else{
+        console.log(code.data + " NO es alumna");
+      }
 
+    } else {
       outputMessage.hidden = false;
       //outputData.parentElement.hidden = true;
     }
@@ -89,5 +160,17 @@ function tick() {
   //video.stop(code.data);
 
 //console.log(dataName);
+<<<<<<< HEAD
   requestAnimationFrame(tick);
 }
+=======
+  
+  //requestAnimationFrame(tick);
+}
+
+setInterval(()=>{requestAnimationFrame(tick)}, 50);
+
+(function main() {
+  
+})();
+>>>>>>> f31c7d6e71cb45494269866ed0048d27a5a52050
