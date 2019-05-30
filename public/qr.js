@@ -160,10 +160,6 @@ function tick() {
   //video.stop(code.data);
 
 //console.log(dataName);
-<<<<<<< HEAD
-  requestAnimationFrame(tick);
-}
-=======
   
   //requestAnimationFrame(tick);
 }
@@ -173,4 +169,3 @@ setInterval(()=>{requestAnimationFrame(tick)}, 50);
 (function main() {
   
 })();
->>>>>>> f31c7d6e71cb45494269866ed0048d27a5a52050
