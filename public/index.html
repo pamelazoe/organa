@@ -2,23 +2,48 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-    <script src="https://cozmo.github.io/jsQR/jsQR.js"></script>
+    <title>Organa</title>
+    <script src="//cozmo.github.io/jsQR/jsQR.js"></script>
     <link rel="stylesheet" href="qr.css">
-
     <!-- To make test locally -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
 
   </head>
   <body>
-    <div id="loadingMessage" hidden="">⌛ Loading video...</div>
-    <canvas id="canvas" height="480" width="640"></canvas>
-    <div id="output">
-    <div id="outputMessage">No QR code detected.</div>
-    <div hidden=""><b>Data:</b> <span id="outputData"></span></div>
-    </div>
-    <script type="text/javascript" src="alumnasgdl.json"></script>
+
+      <div class="container">
+          <nav>
+                <input type="checkbox" id="nav" class="hidden">
+                <label for="nav" class="nav-btn">
+                      <i></i>
+                      <i></i>
+                      <i></i>
+                </label>
+                <div class="logo">
+                  <img src="https://i.imgur.com/OzD016l.png" width="20%"/>
+                      <!-- <a href="#">Laboratoria</a> -->
+                </div>
+                <div class="nav-wrapper">
+                      <ul>
+                            <li><a href="#">Admin</a></li>
+                            <!-- <li><a href="#">Overview</a></li>
+                            <li><a href="#">Prices</a></li>
+                            <li><a href="#">Purchase</a></li> -->
+                      </ul>
+                </div>
+          </nav>
+          <div id="outputMessage" class="qr">Coloca tu QR para la asistencia.</div>
+
+          <section class="camera">
+                      <!-- <h1>jsQR Demo</h1> -->
+<div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+<canvas id="canvas" hidden></canvas>
+<div id="output" hidden>
+
+  <div hidden><b>Bienvenida querida Coder</b> <span id="outputData"class="coder"></span></div>
+</div>
+</section>
     <script src= "qr.js"></script>
 
   </body>
