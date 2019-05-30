@@ -117,37 +117,15 @@ function tick() {
       outputMessage.hidden = true;
       outputData.parentElement.hidden = false;
 
-      //outputData.innerText = "Bienvenida " + code.data  +" happy coding";
-      let timerInterval
-      Swal.fire({
-      title: "Bienvenida " + dataName,
-      html: " happy coding",
-      timer: 2000,
-      onBeforeOpen: () => {
-      Swal.showLoading()
-      timerInterval = setInterval(() => {
-        Swal.getContent().querySelector('strong')
-          .textContent = Swal.getTimerLeft()
-      }, 100)
-      },
-      onClose: () => {
-      clearInterval(timerInterval)
-      }
-      }).then((result) => {
-      if (
-      // Read more about handling dismissals
-      result.dismiss === Swal.DismissReason.timer
-      ) {
-      console.log('I was closed by the timer')
-      }
-      })
+      //outputData.innerText = code.data  +" happy coding";
 
       if (studentsList.includes(code.data)) {
           console.log(code.data + "es alumna");
           const studentName = code.data;
-          updateDbAsistence(studentName, database);     
+          updateDbAsistence(studentName, database);
       }
       else{
+        outputData.parentElement=code.data+"No es alumna";
         console.log(code.data + " NO es alumna");
       }
 
@@ -157,15 +135,11 @@ function tick() {
     }
 
   }
-  //video.stop(code.data);
 
-//console.log(dataName);
-  
-  //requestAnimationFrame(tick);
 }
 
 setInterval(()=>{requestAnimationFrame(tick)}, 50);
 
 (function main() {
-  
+
 })();
