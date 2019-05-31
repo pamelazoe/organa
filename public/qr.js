@@ -117,12 +117,13 @@ function tick() {
       outputMessage.hidden = true;
       outputData.parentElement.hidden = false;
 
-      //outputData.innerText = code.data  +" happy coding";
+      
 
       if (studentsList.includes(code.data)) {
           console.log(code.data + "es alumna");
           const studentName = code.data;
           updateDbAsistence(studentName, database);
+          outputData.innerText = "Bienvenida " + code.data + "\n" + "Happy coding!";
       }
       else{
         outputData.parentElement=code.data+"No es alumna";

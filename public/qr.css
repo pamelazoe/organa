@@ -14,7 +14,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100vh;
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
   font-weight: 400;
   /*background: url(https://cdn-images-1.medium.com/max/2560/1*l5VyH8Ayy_xRgdQjJL6C3g.jpeg);*/
   background-position: center;
@@ -32,21 +32,26 @@ body {
   align-self: center;
 }
 
-.qr{
-  text-align: center;
-  position: sticky;
-  top:20%;
-  font-size: 200%;
-  font-family: 'Bitter', serif;
 
+.qr{
+  display: flex;
+  text-align: center;
+  position: relative;
+  font-size: 200%;
+  font-family: 'Open Sans', sans-serif;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+  align-items: center;
 }
 .coder{
   text-align: center;
   position: sticky;
-  top:20%;
-  font-size: 200%;
+  top:23%;
+  font-size: 120%;
   font-family: 'Open Sans', sans-serif;
-
+  font-weight: 400;
+  width: 100%;
 }
 .container {
   min-height: 100%;
@@ -63,12 +68,19 @@ nav {
   display:inline-block;
 }
 .logo {
-
+  width: 20%;
   float: left;
   padding: 8px;
   margin-left: 16px;
   margin-top: 8px;
   height: 10%;
+}
+
+.logo  img{
+  height:7%;
+  position: absolute;
+  top:2%;
+  left:0%;
 }
 
 .logo a {
@@ -98,7 +110,7 @@ nav ul li:last-child {
 }
 
 nav ul li a {
-  display: inline-block;
+  display: flex;
   outline: none;
   color: #000;
   /* text-transform: uppercase; */
@@ -106,7 +118,11 @@ nav ul li a {
   font-size: 25px;
   letter-spacing: 1.2px;
   font-weight: 600;
-  align-content: center
+  align-content: center;
+  position: absolute;
+  top: 3%;
+  right: 4%;
+  font-family: 'Open Sans', sans-serif;
 }
 .card {
   width: 35%;
@@ -294,10 +310,13 @@ ul {
 canvas {
   font-family: 'Ropa Sans', sans-serif;
   color: #333;
-  max-width: 640px;
+  max-width: 540px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  text-align: center;
+  position: absolute;
+  top: 25%;
 }
 #githubLink {
   position: absolute;
