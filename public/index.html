@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Organa</title>
-    <script src="//cozmo.github.io/jsQR/jsQR.js"></script>
+    <script src="https://cozmo.github.io/jsQR/jsQR.js"></script>
     <link rel="stylesheet" href="qr.css">
     <!-- To make test locally -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
@@ -20,7 +20,7 @@
                       <i></i>
                 </label>
                 <div class="logo">
-                  <img src="https://i.imgur.com/OzD016l.png" width="20%"/>
+                  <img src="https://i.imgur.com/OzD016l.png"/>
                       <!-- <a href="#">Laboratoria</a> -->
                 </div>
                 <div class="nav-wrapper">
@@ -32,7 +32,8 @@
                       </ul>
                 </div>
           </nav>
-          <div id="outputMessage" class="qr">Coloca tu QR para la asistencia.</div>
+          <section class="view-student">
+          <div id="outputMessage" class="qr">Coloca tu QR para registrar tu asistencia.</div>
 
           <section class="camera">
                       <!-- <h1>jsQR Demo</h1> -->
@@ -40,8 +41,21 @@
 <canvas id="canvas" hidden></canvas>
 <div id="output" hidden class="coder" >
 
-  <div hidden ><b>Bienvenida querida Coder</b> <span id="outputData"class="coder"></span></div>
+  <div hidden ><b></b> <span id="outputData"class="coder"></span></div>
 </div>
+</section>
+</section>
+</div>
+<section class="admin-section">
+  <section class="hello">
+      ¡Hola Sam!
+  </section>
+  <section class="assistance-block">
+  <section class="total-assist"></section>
+  <section class="total-absence"></section>
+  <section class="total-delay"></section>
+  <section class="drop-out"></section>
+</section>
 </section>
     <script src= "qr.js"></script>
 
